@@ -25,8 +25,10 @@ def getDB(classNum):
     classCode = driver.find_element_by_css_selector("#breadcrumbs > ul > li:nth-child(2) > a > span").text
     classCode = classCode[classCode.find("_")+1:classCode.find("(")].replace("_", "-")
     db = driver.wait_for_request("allcomponents_db?").response.body
-    parsed_db = parse_json.parseAssignment(db, classCode)
-    print(parsed_db)
+    test = driver.wait_for_request("sections_db?").response.body
+    print(test)
+    #parsed_db = parse_json.parseAssignment(db.decode("utf-8"), classCode)
+    #print(parsed_db)
 
 def getVidlink(content_url):
     del driver.requests
@@ -36,10 +38,6 @@ def getVidlink(content_url):
 
 
 
-parse_json.loadCompleted()
-print(dataPy.down_DB)
-
-
-#getDB("4962")
+getDB("4962")
 #getVidlink("https://lcms.skku.edu/em/5e576266c0a25")
 #input('Press Enter to exit')

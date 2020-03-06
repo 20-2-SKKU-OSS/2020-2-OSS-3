@@ -1,60 +1,97 @@
 import json
 import xml.etree.ElementTree as ET
 import dataPy
+import requestPy
+
+
+def testDB():
+    with open("input.json", "r", encoding="utf-8-sig") as testdb:
+        parseAssignment(testdb, "abcdef")
+
 
 def loadCompleted():
-    with open("complete.json", "r") as complete_file:
-        dataPy.down_DB = json.load(complete_file)
+    with open("complete.json", "r", encoding="utf-8-sig") as complete_file:
+        dataPy.down_DB = json.load(complete_file, encoding="utf-8")
+
 
 def writeCompleted():
-    with open("complete.json", "w") as write_file:
-        json.dump(dataPy.down_DB, write_file)
+    with open("complete.json", "w", encoding='UTF-8-sig') as write_file:
+        write_file.write(json.dumps(dataPy.down_DB, ensure_ascii=False))
+
 
 def findClass(classCode):
     for dict in dataPy.down_DB:
         if dict["classCode"] == classCode:
             return dict
 
+    dataPy.down_DB.append(
+        {"classCode": classCode, "classVids": []}
+    )
+
+    return findClass(classCode)
+
+
+def loadClassVids(dic):
+    l = dic["classVids"]
+    rlist = []
+    for item in l:
+        rlist.append(item["content_id"])
+    return rlist
+
+
 def findDuplicate(db, content_id):
     pass
 
+
 def parseAssignment(db, classCode):
-    db = db.decode("utf-8")
-    data = json.loads(db)
-    parsed_data = []
+    #site_data = json.loads(db)
+    site_data = json.load(db)
+    class_data = findClass(classCode)
+    class_vids = class_data["classVids"]
+    for item in class_vids:
+        print(item["title"])
+    class_vid_list = loadClassVids(class_data)
+    work_list = []
     allowedType = ["screenlecture", "movie"]
-    for item in data:
+    for item in site_data:
         try:
             if(item["commons_content"]["content_type"] in allowedType):
-                item_parsed = {}
-                item_parsed.update({
-                    "assignment_id": item["assignment_id"],
-                    "component_id": item["component_id"],
-                    "title": item["title"],
-                    "date": item["unlock_at"][2:item["unlock_at"].find("T")].replace("-",""),
-                    "content_id": item["commons_content"]["content_id"],
-                    "content_type": item["commons_content"]["content_type"],
-                    "content_url": item["commons_content"]["view_url"]
-                })
-                
-                parsed_data.append(item_parsed)
+                if(item["commons_content"]["content_id"] not in class_vid_list):
+                    item_parsed = {}
+                    item_parsed.update({
+                        "class_id": classCode,
+                        "assignment_id": item["assignment_id"],
+                        "component_id": item["component_id"],
+                        "title": item["title"],
+                        "date": item["unlock_at"][2:item["unlock_at"].find("T")].replace("-", ""),
+                        "content_id": item["commons_content"]["content_id"],
+                        "content_type": item["commons_content"]["content_type"],
+                        "content_url": item["commons_content"]["view_url"],
+                        "vid_urls": parseVidXml(requestPy.getPHP(item["commons_content"]["content_id"]))
+                    })
+                    class_vids.append(item_parsed)
+                    work_list.append(item_parsed)
+
         except KeyError:
             pass
 
-    return parsed_data
+    return work_list
+
 
 def parseVidXml(xml):
-    xml = xml.decode("utf-8")
+    #xml = xml.decode("utf-8")
+
     root = ET.fromstring(xml)
-    vidlinks =[]
+    vidlinks = []
 
     for url in root.iter('media_uri'):
         if ("_pseudo" not in url.text and url.text not in vidlinks):
             vidlinks.append(url.text)
 
-    print(vidlinks)
+    return vidlinks
+
 
 loadCompleted()
-a = findClass("123456")
-a["classVids"].append({"test":"test1234"})
+testDB()
 writeCompleted()
+
