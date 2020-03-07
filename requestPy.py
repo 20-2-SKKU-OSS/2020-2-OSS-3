@@ -1,5 +1,6 @@
 import requests
 import os
+import shutil
 
 base_dir = "C:\\Users\\Jaeyoon\\Desktop\\0.3학년 1학기\\ㅎ.인강\\"
 
@@ -13,6 +14,14 @@ def getPHP(contentID):
 def downloadLecture(urls):
     pass
 
+def rcDir(d):
+    removeDir(d)
+    while(os.path.exists(d)):pass
+    os.makedirs(d)
+
+def removeDir(d):
+    if(os.path.exists(d)):
+        shutil.rmtree(d)
 
 def createDir(d):
     if(not os.path.exists(d)):
@@ -59,7 +68,7 @@ def downloadWeek(classCode="SWE3003-43", className="데이터베이스개론", p
     for week in list(workload.keys()):
         week_dict = workload[week]
         week_dir = class_dir + "//" + classCode+" "+week+"주차"
-        createDir(week_dir)
+        rcDir(week_dir)
 
         for lecture in list(week_dict.keys()):
             content = week_dict[lecture]
