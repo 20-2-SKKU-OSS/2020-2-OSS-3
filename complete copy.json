@@ -1,0 +1,15 @@
+﻿[
+  {
+    "classCode": "abcdef",
+    "className": "수업명",
+    "professor": "교수명",
+    "classVids": {
+        "1" : {
+            "12345": {
+
+            },
+            "56789": {
+
+            }
+        }
+    }
