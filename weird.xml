@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<content version="1.0">
+    <content_playing_info version="1.0">
+        <content_id>5e57d8aa7f262</content_id>
+        <content_type>upf</content_type>
+        <content_uri><![CDATA[https://lcms.skku.edu/contents3/skku100001/5e57d8aa7f262/contents/web_files]]></content_uri>
+        <content_duration>2260.8</content_duration>
+        <content_thumbnail_uri>https://lcms.skku.edu/contents3/skku100001/5e57d8aa7f262/contents/web_files/slides/thumbnails/big_thumbnail.jpg</content_thumbnail_uri>
+        <story_list>
+            <story id="458b92d9-cc8a-49fa-ac6e-f7da53a35b9b">
+                <story_type>video1</story_type>
+                <story_duration>2260.8</story_duration>
+                <main_media_list default_media_id="458b92d9-cc8a-49fa-ac6e-f7da53a35b9b">
+                    <main_media media_id="458b92d9-cc8a-49fa-ac6e-f7da53a35b9b">screen.mp4</main_media>
+                </main_media_list>
+            </story>
+        </story_list>
+    </content_playing_info>
+    <content_metadata version="1.0">
+        <title><![CDATA[Microelecronic Circuits 01 - Introduction]]></title>
+        <summary><![CDATA[]]></summary>
+        <tags><![CDATA[]]></tags>
+        <author>
+            <name><![CDATA[김용상(KIM YONGSANG)]]></name>
+            <email><![CDATA[yongsang@skku.edu]]></email>
+            <profile_image><![CDATA[https://lcms.skku.edu/modules/xn_commonsi/skins/site/mypage/images/profile_default.gif]]></profile_image>
+        </author>
+        <date><![CDATA[2020-02-27 23:56:42]]></date>
+    </content_metadata>
+    <service_root version="1.0">
+        <web>https://lcms.skku.edu/contents3/skku100001/5e57d8aa7f262/contents/web_files</web>
+        <media type="default">
+            <media_uri method="progressive" target="all">https://cdn-lcms.skku.edu:58443/contents3/skku100001/5e57d8aa7f262/contents/media_files/[MEDIA_FILE]</media_uri>
+            <media_uri method="pseudo" target="flash-fallback">https://lcms.skku.edu:58443/contents3_pseudo/skku100001/5e57d8aa7f262/contents/media_files/[MEDIA_FILE]</media_uri>
+            <media_uri method="progressive" target="mobile">https://cdn-lcms.skku.edu:58443/contents3/skku100001/5e57d8aa7f262/contents/media_files/[MEDIA_FILE]</media_uri>
+        </media>
+    </service_root>
+</content>

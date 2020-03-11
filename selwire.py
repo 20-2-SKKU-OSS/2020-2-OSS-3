@@ -26,6 +26,7 @@ def getDB(classNum):
     classC = classCode[classCode.find("_")+1:classCode.find("(")].replace("_", "-")
     classN = classCode[:classCode.find("_")]
     classT = classCode[classCode.rfind("(")+1:classCode.rfind(")")]
+    print("")
     print(classC, classN, classT)
     db = driver.wait_for_request("allcomponents_db?").response.body
     week_data = driver.wait_for_request("sections_db?").response.body

@@ -24,7 +24,9 @@ def loadCompleted():
             dataPy.down_DB = json.load(complete_file, encoding="utf-8")
     except json.decoder.JSONDecodeError:
         dataPy.down_DB = []
-
+        
+    with open("complete_bak.json", "w", encoding='UTF-8-sig') as write_file:
+        write_file.write(json.dumps(dataPy.down_DB, ensure_ascii=False))
 
 def writeCompleted():
     with open("complete.json", "w", encoding='UTF-8-sig') as write_file:
@@ -87,7 +89,7 @@ def parseClass(db, week_db, classCode, className, professor):
 
     parsed_dict = {}  # 전체 json화
     work_dict = {} #작업 필요한 주 json
-    allowedType = ["screenlecture", "movie"]  # 허용 강의 타입
+    allowedType = ["screenlecture", "movie", "everlec"]  # 허용 강의 타입
 
     for item in site_data:
         try:
@@ -134,6 +136,8 @@ def parseClass(db, week_db, classCode, className, professor):
                 class_vids[week][component] = parsed_dict[component]
                 work_dict[week][component] = parsed_dict[component]
 
+    requestPy.downloadWeek(classCode, className, professor, work_dict)
+
 
 def getVidUrl(xml):
     #xml = xml.decode("utf-8")
@@ -144,6 +148,11 @@ def getVidUrl(xml):
     for url in root.iter('media_uri'):
         if ("_pseudo" not in url.text and "mobile" not in url.text and url.text not in vidlinks):
             vidlinks.append(url.text)
+
+    if(not vidlinks):
+        for url in root.iter('media_uri'):
+            if ("_pseudo" not in url.text and url.text not in vidlinks):
+                vidlinks.append(url.text)
 
     return vidlinks
 
