@@ -137,7 +137,7 @@ def parseClass(db, week_db, classCode, className, professor):
                 work_dict[week][component] = parsed_dict[component]
 
     requestPy.downloadWeek(classCode, className, professor, work_dict)
-
+    writeCompleted()
 
 def getVidUrl(xml):
     #xml = xml.decode("utf-8")

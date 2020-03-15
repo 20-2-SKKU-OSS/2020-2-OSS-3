@@ -21,58 +21,59 @@ def downloadLecture(urls):
     pass
 
 
-# def downloader(link, file_name):
-#     response = requests.get(link, stream=True)
-#     if(response.status_code ==  404):
-#         print ('err')
-#         return
-#     start = time.perf_counter()
-#     with open(file_name, "wb") as f:
-#         print ("Downloading %s" % file_name)
-#         response = requests.get(link, stream=True)
-#         total_length = int(response.headers.get('content-length'))
-#         print (response.headers["content-type"])
-#         print (total_length / 1024/1024, "mb")
+def downloader(link, file_name):
+    response = requests.get(link, stream=True)
+    if(response.status_code ==  404):
+        print ('err')
+        return
+    start = time.perf_counter()
+    with open(file_name, "wb") as f:
+        print ("Downloading %s" % file_name)
+        response = requests.get(link, stream=True)
+        total_length = int(response.headers.get('content-length'))
+        print (response.headers["content-type"])
+        print (total_length / 1024/1024, "mb")
 
-#         if total_length is None:  # no content length header
-#             f.write(response.content)
-#         else:
-#             dl = 0
-#             for data in response.iter_content(chunk_size=4096):
-#                 #dl += len(data)
-#                 f.write(data)
-#                 # done = int(50 * dl / total_length)
-#                 # sys.stdout.write("\r[%s%s] %s bps" % (
-#                 #     '=' * done, ' ' * (50-done), dl//(time.perf_counter() - start)))
-#                 # sys.stdout.flush()
+        if total_length is None:  # no content length header
+            f.write(response.content)
+        else:
+            dl = 0
+            for data in response.iter_content(chunk_size=4096):
+                #dl += len(data)
+                f.write(data)
+                # done = int(50 * dl / total_length)
+                # sys.stdout.write("\r[%s%s] %s bps" % (
+                #     '=' * done, ' ' * (50-done), dl//(time.perf_counter() - start)))
+                # sys.stdout.flush()
 
-def downloader(url, filename):
-    root = progressbar = quit_id = None
-    ready = Event()
+# def downloader(url, filename):
+#     root = progressbar = quit_id = None
+#     ready = Event()
 
-    def reporthook(blocknum, blocksize, totalsize):
-        nonlocal quit_id
-        if blocknum == 0:  # started downloading
-            def guiloop():
-                nonlocal root, progressbar
-                root = Tk()
-                root.withdraw()  # hide
-                progressbar = ttk.Progressbar(root, length=400)
-                progressbar.grid()
-                # show progress bar if the download takes more than .5 seconds
-                root.after(500, root.deiconify)
-                ready.set()  # gui is ready
-                root.mainloop()
-            Thread(target=guiloop).start()
-        ready.wait(1)  # wait until gui is ready
-        percent = blocknum * blocksize * 1e2 / totalsize  # assume totalsize > 0
-        if quit_id is None:
-            root.title('%%%.0f %s' % (percent, filename,))
-            progressbar['value'] = percent  # report progress
-            if percent >= 100:  # finishing download
-                quit_id = root.after(0, root.destroy)  # close GUI
+#     def reporthook(blocknum, blocksize, totalsize):
+#         nonlocal quit_id
+#         if blocknum == 0:  # started downloading
+#             def guiloop():
+#                 nonlocal root, progressbar
+#                 root = Tk()
+#                 root.withdraw()  # hide
+#                 progressbar = ttk.Progressbar(root, length=400)
+#                 progressbar.grid()
+#                 # show progress bar if the download takes more than .5 seconds
+#                 root.after(500, root.deiconify)
+#                 ready.set()  # gui is ready
+#                 root.mainloop()
+#                 root.quit()
+#             Thread(target=guiloop).start()
+#         ready.wait(1)  # wait until gui is ready
+#         percent = blocknum * blocksize * 1e2 / totalsize  # assume totalsize > 0
+#         if quit_id is None:
+#             root.title('%%%.0f %s' % (percent, filename,))
+#             progressbar['value'] = percent  # report progress
+#             if percent >= 100:  # finishing download
+#                 quit_id = root.after(0, root.destroy)  # close GUI
 
-    return shell(url, filename, reporthook)
+#     return shell(url, filename, reporthook)
 
 
 def shell(a,b,c):
@@ -112,13 +113,14 @@ def downloadWeek(classCode, className, professor, workload):
 
     for week in list(workload.keys()):
         week_dict = workload[week]
-        week_dir = class_dir + "//" + classCode+" "+week+"주차//"
+        week_dir = class_dir + "\\" + classCode+" "+week+"주차\\"
         rcDir(week_dir)
 
         for lecture in list(week_dict.keys()):
             content = week_dict[lecture]
             vids = content["vid_urls"]
             title = content["title"].replace(":", " ")
+            title = content["title"].replace("/", "of")
             fname = content["week_id"]+"_"+title
             filename = ""
 
