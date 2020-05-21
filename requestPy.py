@@ -22,6 +22,10 @@ def downloadLecture(urls):
 
 
 def downloader(link, file_name):
+    if("/[MEDIA_FILE]") in link:
+        print("Media-file Error")
+        return
+
     response = requests.get(link, stream=True)
     if(response.status_code ==  404):
         print ('err')
@@ -31,7 +35,7 @@ def downloader(link, file_name):
         print ("Downloading %s" % file_name)
         response = requests.get(link, stream=True)
         total_length = int(response.headers.get('content-length'))
-        print (response.headers["content-type"])
+        #print (response.headers["content-type"])
         print (total_length / 1024/1024, "mb")
 
         if total_length is None:  # no content length header
@@ -45,6 +49,10 @@ def downloader(link, file_name):
                 # sys.stdout.write("\r[%s%s] %s bps" % (
                 #     '=' * done, ' ' * (50-done), dl//(time.perf_counter() - start)))
                 # sys.stdout.flush()
+            if(f.tell()/total_length < 0.95):
+                print(file_name+ "-"+link+ "fsize error")
+
+            print(f.tell()/1024/1024,"mb")
 
 # def downloader(url, filename):
 #     root = progressbar = quit_id = None
@@ -83,10 +91,15 @@ def shell(a,b,c):
         print(e)
 
 def rcDir(d):
-    removeDir(d)
-    while(os.path.exists(d)):
+    try:
+        removeDir(d)
+        while(os.path.exists(d)):
+            pass
+        os.makedirs(d)
+
+    except:
+        print("del_err")
         pass
-    os.makedirs(d)
 
 
 def removeDir(d):

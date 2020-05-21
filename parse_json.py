@@ -61,11 +61,14 @@ def findDuplicate(db, content_id):
 def parseWeekdata(week_data, parsed_dict):
     data = {}
     key_list = list(parsed_dict.keys())
+
     for week in week_data:
+
         week_num = (week["title"][:week["title"].find("주")])
         week_id = 1
         data[week_num] = []
         week["subsections"].sort(key=lambda s: s["position"])  # position 기준 정렬
+        
         for subsection in week["subsections"]:
             subsection["units"].sort(key=lambda s: s["position"])
             for unit in subsection["units"]:
@@ -89,7 +92,7 @@ def parseClass(db, week_db, classCode, className, professor):
 
     parsed_dict = {}  # 전체 json화
     work_dict = {} #작업 필요한 주 json
-    allowedType = ["screenlecture", "movie", "everlec"]  # 허용 강의 타입
+    allowedType = ["screenlecture", "movie", "everlec", "oncast"]  # 허용 강의 타입
 
     for item in site_data:
         try:
@@ -119,6 +122,7 @@ def parseClass(db, week_db, classCode, className, professor):
             continue
 
         workFlag = False
+        
         for component in week_data[week]:
             try:
                 if(class_vids[week][component] != parsed_dict[component]):
@@ -147,7 +151,16 @@ def getVidUrl(xml):
 
     for url in root.iter('media_uri'):
         if ("_pseudo" not in url.text and "mobile" not in url.text and url.text not in vidlinks):
-            vidlinks.append(url.text)
+            if("[MEDIA_FILE]" in url.text):
+                bs = url.text[:url.text.rfind("[")]
+                for vid in root.iter('main_media'):
+                    if(vid.text):
+                        bs = bs+vid.text
+                        if(bs not in vidlinks):
+                            print(bs)
+                            vidlinks.append(bs)
+            else:
+                vidlinks.append(url.text)
 
     if(not vidlinks):
         for url in root.iter('media_uri'):

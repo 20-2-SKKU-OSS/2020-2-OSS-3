@@ -10,13 +10,28 @@ driver = webdriver.Chrome()
 classList = ["4962", "5362", "6762", "7082", "7915", "9212", "5881"]
 
 # login
-driver.get("https://icampus.skku.edu/login")
-driver.find_element_by_css_selector("#userid").send_keys(credentials.id)
-driver.find_element_by_css_selector("#password").send_keys(credentials.pw)
-driver.find_element_by_css_selector("#btnLoginBtn").click()
-time.sleep(1)
 
-completeddata = None
+
+def login(i):
+    driver.get("https://icampus.skku.edu/login")
+    driver.find_element_by_css_selector("#userid").send_keys(credentials.id[i])
+    driver.find_element_by_css_selector(
+        "#password").send_keys(credentials.pw[i])
+    driver.find_element_by_css_selector("#btnLoginBtn").click()
+    time.sleep(1)
+
+
+def loadClass():
+    driver.get("https://canvas.skku.edu/courses")
+    classList = driver.find_element_by_css_selector(
+        "#my_courses_table > tbody")
+    classTags = driver.find_elements_by_tag_name("a")
+    lists = []
+    for cl in classTags:
+        if(cl.get_attribute("title") and ("안전교육" not in cl.get_attribute("title"))):
+            lists.append(cl.get_attribute("href").split("/")[-1])
+
+    return lists
 
 
 def getDB(classNum):
@@ -39,9 +54,24 @@ def getDB(classNum):
 
 
 parse_json.loadCompleted()
-for cl in classList:
+
+login(0)
+classList1 = loadClass()
+if "2516" in classList1: classList1.remove("2516")
+print(classList1)
+
+
+for cl in classList1:
+    getDB(cl)
+
+login(1)
+
+classList2 = loadClass()
+if "2564" in classList2: classList2.remove("2564")
+classList2 = set(classList2)-set(classList1)
+print(classList2)
+
+for cl in classList2:
     getDB(cl)
 
 parse_json.writeCompleted()
-# getVidlink("https://lcms.skku.edu/em/5e576266c0a25")
-#input('Press Enter to exit')
