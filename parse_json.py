@@ -82,8 +82,8 @@ def parseWeekdata(week_data, parsed_dict):
 
 
 def parseClass(db, week_db, classCode, className, professor):
-    site_data = json.loads(db)
-    w_data = json.loads(week_db)
+    site_data = db
+    w_data = week_db
     # site_data = json.load(db)  # 강의 정보
     # w_data = json.load(week_db)
 
