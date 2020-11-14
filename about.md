@@ -5,7 +5,7 @@ description: This is who we are.
 background: '/img/bg-about.jpg'
 ---
 
-| Name | Dept | Github |
+|&nbsp;Name&nbsp;|&nbsp;Dept&nbsp;|&nbsp;Github&nbsp;|
 | :---: | :------------------------ | :------------------------|
 | 이상호 | 소프트웨어, 17 | https://github.com/ |
 | 강승구 | , 18 | https://github.com/seunggu0305 |
