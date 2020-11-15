@@ -8,7 +8,7 @@ from threading import Event, Thread
 from tkinter import Tk, ttk
 from urllib.request import urlretrieve
 
-base_dir = "D:\\0.3학년1학기 인강\\"
+base_dir = "D:\\test_downloader\\"
 
 
 def getPHP(contentID):

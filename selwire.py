@@ -64,14 +64,4 @@ print(classList1)
 for cl in classList1:
     getDB(cl)
 
-login(1)
-
-classList2 = loadClass()
-if "2564" in classList2: classList2.remove("2564")
-classList2 = set(classList2)-set(classList1)
-print(classList2)
-
-for cl in classList2:
-    getDB(cl)
-
 parse_json.writeCompleted()
