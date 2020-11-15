@@ -2,7 +2,7 @@
 layout: post
 title: "About Our Project"
 subtitle: "SKKU iCampus Auto Downloader"
-date: 2020-11-15 18:22:00 -0900
+date: 2020-11-15 18:22:00 +0900
 background: '/img/posts/02.jpg'
 ---
 
