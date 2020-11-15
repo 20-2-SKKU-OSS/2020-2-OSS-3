@@ -31,7 +31,7 @@ background: '/img/posts/02.jpg'
 -------------------------
 
 
-## Dependecies
+## Dependencies
 -------------------------
 * python
 * selenium
