@@ -5,6 +5,9 @@ description: This is who we are.
 background: '/img/bg-about.jpg'
 ---
 
+Github - <https://github.com/20-2-SKKU-OSS/2020-2-OSS-3>
+
+
 |&nbsp;Name&nbsp;|&nbsp;Department&nbsp;|&nbsp;Github&nbsp;|
 | :---: | :------------------------ | :------------------------|
 | 이상호 | &nbsp;소프트웨어, 17 (팀장) | &nbsp;<https://github.com/mancityg> |
