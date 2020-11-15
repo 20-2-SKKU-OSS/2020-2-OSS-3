@@ -4,7 +4,7 @@
 
 This repository holds the official Jekyll version of the Clean Blog theme on Start Bootstrap!
 
-# Modification
+# Modification by our team
 * Applied code highlighting
 * Modified table css
 
