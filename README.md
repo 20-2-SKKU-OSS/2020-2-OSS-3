@@ -1,30 +1,76 @@
 # WIP: skku_icampus_auto_downloader
+
 성균관대 (신)icampus 자동 다운(동기화) 프로그램
 
 
-## 개발 취지
-시험기간만 되면 매번 서버가 터지고 가끔가다 수강 가능기간을 매우 짧게 설정되어있는 강의들이 있어서 강의를 수강하는데 많은 불편합이 있어 개발한 프로그램입니다.
 
-## 개발 방향
-매강의를 직접 손으로 다운받고 다운 받은 강의와 다운 받지 않은 강의를 구분하는 등 관리하기 힘들고 그렇다고 현재 존재하는 모든 강의를 다시 다 다운받는것도 낭비임으로 다운 받은 강의들을 리스팅하여 아이캠퍼스 서버와 one-way sync하는 방향으로 개발하였습니다.
+- [WIP: skku_icampus_auto_downloader](#wip-skku_icampus_auto_downloader)
+  - [개발 배경](#개발-배경)
+    - [개발 취지](#개발-취지)
+    - [개발 방향](#개발-방향)
+    - [개발 현황](#개발-현황)
+  - [사용법](#사용법)
+  - [Repository Structure](#repository-structure)
+  - [Major dependencies](#major-dependencies)
+  - [저작권 관련 사항](#저작권-관련-안내-사항)
+---
 
-## 개발 현황
-python3에서 작동하며 현재 대부분의 기능이 작동되지만 매우 user friendly하지 않고 매우 account dependent하여 일반화 되어 있지 않으며 GUI등 많은 부분이 미흡한 상태입니다. 
-또한 selenium-wire라는 라이브러리를 사용해 proxy dependent한 방법으로 임시 구현을 이부분을 개선할 필요가 있습니다.
+## 개발 배경
+### 개발 취지
+시험 기간만 되면 매번 서버가 터지고 가끔 가다 수강 가능 기간이 매우 짧게 설정되어있는 강의들이 있어서 강의를 수강하는데 많은 불편함이 있어 개발한 프로그램입니다.
+
+### 개발 방향
+매 강의를 직접 손으로 다운 받고 다운 받은 강의와 다운 받지 않은 강의를 구분하는 등 관리하기 힘들고, 그렇다고 현재 존재하는 모든 강의를 다시 다 다운 받는 것도 낭비이므로 다운 받은 강의들을 리스팅하여 아이캠퍼스 서버와 one-way sync하는 방향으로 개발하였습니다.
+
+
+
+### 개발 현황
+python3에서 작동하며 현재 대부분의 기능이 작동되지만 매우 user friendly하지 않고, 매우 account dependent하여 일반화 되어 있지 않으며, GUI 등 많은 부분이 미흡한 상태입니다. 또한 selenium-wire라는 라이브러리를 사용해 proxy dependent한 방법으로 임시 구현을 이 부분을 개선할 필요가 있습니다.
+
+---
 
 ## 사용법
-1. dependencies와 chrome driver 설치
-2. crendentials.py 파일을 생성후 아래와 같이 두개의 배열을 생성 및 저장
-  ```
-  id = [<사용자 아이디>]
-  pw = [<사용자 비밀번호>]
-  ```
-3. selwire.py 실행
+#### 1. dependency 설치
+    pip install selenium selenium-wire
 
-## Major Dependencies
-+ chrome driver
+####  2. [chromedriver](https://chromedriver.chromium.org/downloads) 설치
+   - 위 링크를 통해 Chrome 버전, OS에 맞게 chromedriver 다운로드 및 설치
+     - Chrome 버전 확인: 크롬 우측 상단의 메뉴 버튼 > 도움말 > Chrome 정보
+   - selwire.py와 같은 경로에 chromedriver.exe 추가
+   
+#### 3. selwire.py와 같은 경로에 crendentials.py 파일 생성
+   
+#### 4. selwire.py의 내용에 아래와 같이 세 개의 배열 추가 및 저장
+    
+    sid = [<사용자 학번>]
+    id = [<사용자 아이디>]
+    pw = [<사용자 비밀번호>]
+    
+#### 5. selwire.py 실행
+    python selwire.py
+
+---
+
+## Repository Structure
+
+```bash
+.
+├── dataPy.py
+├── parse_json.py
+├── requestPy.py
+├── selwire.py
+├── settings.py
+├── user.py
+├── .gitignore
+└── README.md
+```
+
+## Major dependencies
++ chromedriver
 + selenium
 + selenium-wire
+
+---
 
 ## 저작권 관련 안내 사항
 해당 프로젝트를 사용함에 있어서 저작권 부분에서 발생할 문제를 우려하는 사용자들을 위해, 저작권 관련 안내 사항을 다음과 같이 공지합니다.
