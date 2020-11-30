@@ -7,9 +7,14 @@ import time
 from threading import Event, Thread
 from tkinter import Tk, ttk
 from urllib.request import urlretrieve
+import settings # 다운로드 파일 경로 설정
 
 base_dir = "D:\\test_downloader\\"
 
+if settings.downloadDir:
+    base_dir = settings.downloadDir
+else:
+    base_dir = "D:\\test_downloader\\"
 
 def getPHP(contentID):
     response = requests.get(
@@ -129,6 +134,13 @@ def downloadWeek(classCode, className, professor, workload):
         week_dir = class_dir + "\\" + classCode+" "+week+"주차\\"
         rcDir(week_dir)
 
+        '''
+            - 기존 구현 사항: 강의 순차적으로 다운로드
+            - 개선 방향: 강좌 별 다운로드 할 영상 모아서 멀티프로세싱 구현
+            (구현 예정이며 현재 구현을 위한 준비 단계)
+        '''
+        work_list = []
+
         for lecture in list(week_dict.keys()):
             content = week_dict[lecture]
             vids = content["vid_urls"]
@@ -141,22 +153,29 @@ def downloadWeek(classCode, className, professor, workload):
                 filename = fname + \
                     getFileType(content["vid_urls"][0])
                 print(filename)
-                downloader(content["vid_urls"][0], week_dir+filename)
+                 # downloader(content["vid_urls"][0], week_dir+filename)
+                work_list.append([content["vid_urls"][0], week_dir+filename])
 
             elif(searchSubstring("_camera", vids)):
                 for vid in vids:
                     if("camera" in vid):
                         filename = fname + "-camera" + getFileType(vid)
-                        print(filename)
-                        downloader(vid, week_dir+filename)
+                        # downloader(vid, week_dir+filename)
+                        work_list.append([vid, week_dir+filename])
                     elif("screen" in vid):
                         filename = fname + "-screen" + getFileType(vid)
                         print(filename)
-                        downloader(vid, week_dir+filename)
+                        # downloader(vid, week_dir+filename)
+                        work_list.append([vid, week_dir + filename])
 
             else:
                 for vid in vids:
                     filename = fname + "-" + vid.split("/")[-1]
                     print(filename)
-                    downloader(vid, week_dir+filename)
+                    # downloader(vid, week_dir+filename)
+                    work_list.append([vid, week_dir + filename])
+
+        # 멀티프로세싱 구현을 위함 (추후 수정 예정)
+        for param in work_list:
+            downloader(*param)
 
