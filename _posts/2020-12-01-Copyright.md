@@ -2,8 +2,7 @@
 layout: post
 title: "Copyright-related Guidance"
 subtitle: "SKKU iCampus Auto Downloader"
-date: 2020-12-01
-date: 2020-12-01
+date: 2020-11-31 18:22:00 +0900
 background: '/img/posts/02.jpg'
 ---
 
