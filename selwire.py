@@ -47,13 +47,28 @@ def getToken(driver):
 
      UID can be extracted automaticly when loading class so UID will be dealt by getClassesAndUid()
     """
-
+    
     # 1. load any class with selenium
+    driver.get("https://canvas.skku.edu/courses")
+    item = driver.find_element_by_css_selector(
+        "#my_courses_table > tbody > tr:nth-child(1) > td.course-list-course-title-column.course-list-no-left-border > a")
+    cid = item.get_attribute("href").split("/")[-1]
+    url = "https://canvas.skku.edu/courses/" + cid + "/external_tools/1"
+    driver.get(url)
 
+    header = {}
+    cook = {}
     # 2. extract tokens from browser cookies
-
+    cookies = driver.get_cookies()
+    for cookie in cookies:
+        # extract xn_api_token
+        if (cookie["name"] == "xn_api_token"):
+            header["Authorization"] = "Bearer " + cookie["value"]
+        # extract _normandy_seesion
+        if (cookie["name"] == '_normandy_session'):
+            cook["_normandy_session"] = cookie['value']
     # 3. return extracted tokens as header and cookie
-    pass
+    return header, cook
 
 
 # function for automatically loading user's attending classes and canvas UID should be written
