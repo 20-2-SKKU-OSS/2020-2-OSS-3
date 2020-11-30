@@ -51,6 +51,8 @@ def getToken(driver):
     # 1. load any class with selenium
 
     # 2. extract tokens from browser cookies
+
+    # 3. return extracted tokens as header and cookie
     pass
 
 
