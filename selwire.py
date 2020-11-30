@@ -32,6 +32,25 @@ def login(i):
 
 # function for extracting user auth token should be written
 def getToken(driver):
+    """
+     Extract user authentication tokens(cookies) from selenium(web browser)
+
+     By analysis on canvas API, we found out that 3 kinds of auth token is mainly used
+     - xn_api_token: used as Bearer token in http request header
+     - uid: user id on canvas requested as url params
+     - _normandy_session: usef for initial auth token until xn_api_token is loaded
+
+     xn_api_token is not fully loaded until we enter at least 1 course page
+     Therefore, we should visit course page with selenium in advance before extracting cookies from selenium
+     Since this procedure is done in advance of loading classes we will just simply visit
+     first class that appears on the list when clicking class list page.
+
+     UID can be extracted automaticly when loading class so UID will be dealt by getClassesAndUid()
+    """
+
+    # 1. load any class with selenium
+
+    # 2. extract tokens from browser cookies
     pass
 
 
