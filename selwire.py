@@ -21,11 +21,15 @@ else:
 
 
 # login
-def login(i):
+def login(driver, id:str, pw: str):
+    """
+    login automation with selenium
+    refactored for better modularization
+    """
     driver.get("https://icampus.skku.edu/login")
-    driver.find_element_by_css_selector("#userid").send_keys(credentials.id[i])
+    driver.find_element_by_css_selector("#userid").send_keys(id)
     driver.find_element_by_css_selector(
-        "#password").send_keys(credentials.pw[i])
+        "#password").send_keys(pw)
     driver.find_element_by_css_selector("#btnLoginBtn").click()
     time.sleep(1)
 
@@ -116,9 +120,9 @@ def getClassesAndUid(user):
 # This function will act as program entry point
 def loadUser(driver, user):
     # 1.login with selenium
-    
+    login(driver, user.id, user.pw)
     # 2.extract auth token
-
+    user.headers, user.cookies = getToken(driver)
     # 3.load classes and canvas uid
     user.uid, user.classes, user.classDatas = getClassesAndUid(user)
     pass
@@ -138,7 +142,7 @@ def loadClass():
 
 
 def getDB(classNum):
-    url = "https://canvas.skku.edu/courses/" + classNum + "/external_tools/1"
+    url = "https://canvas.skku.edu/courses/" + str(classNum) + "/external_tools/1"
     del driver.requests
     driver.get(url)
     classCode = driver.find_element_by_css_selector(
@@ -158,14 +162,14 @@ def getDB(classNum):
 
 parse_json.loadCompleted()
 
-# Create a new instance of the Firefox driver
+# Create a new instance of the chromedriver
 driver = webdriver.Chrome()
 
-login(0)
-classList1 = loadClass()
-# upper codes will be replaced by loadUser() after fully implemented
+# Load User datas
+loadUser(driver, user)
 
-for cl in classList1:
+# download each classes
+for cl in user.classes:
     getDB(cl)
 
 parse_json.writeCompleted()
