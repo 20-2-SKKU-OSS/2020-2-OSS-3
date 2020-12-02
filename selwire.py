@@ -116,9 +116,9 @@ def getClassesAndUid(user):
 # This function will act as program entry point
 def loadUser(driver, user):
     # 1.login with selenium
-    
+    login(driver, user.id, user.pw)
     # 2.extract auth token
-
+    user.headers, user.cookies = getToken(driver)
     # 3.load classes and canvas uid
     user.uid, user.classes, user.classDatas = getClassesAndUid(user)
     pass
