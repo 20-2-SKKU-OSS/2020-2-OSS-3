@@ -158,14 +158,14 @@ def getDB(classNum):
 
 parse_json.loadCompleted()
 
-# Create a new instance of the Firefox driver
+# Create a new instance of the chromedriver
 driver = webdriver.Chrome()
 
-login(0)
-classList1 = loadClass()
-# upper codes will be replaced by loadUser() after fully implemented
+# Load User datas
+loadUser(driver, user)
 
-for cl in classList1:
+# download each classes
+for cl in user.classes:
     getDB(cl)
 
 parse_json.writeCompleted()
