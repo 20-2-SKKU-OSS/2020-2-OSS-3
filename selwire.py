@@ -21,11 +21,15 @@ else:
 
 
 # login
-def login(i):
+def login(driver, id:str, pw: str):
+    """
+    login automation with selenium
+    refactored for better modularization
+    """
     driver.get("https://icampus.skku.edu/login")
-    driver.find_element_by_css_selector("#userid").send_keys(credentials.id[i])
+    driver.find_element_by_css_selector("#userid").send_keys(id)
     driver.find_element_by_css_selector(
-        "#password").send_keys(credentials.pw[i])
+        "#password").send_keys(pw)
     driver.find_element_by_css_selector("#btnLoginBtn").click()
     time.sleep(1)
 
@@ -138,7 +142,7 @@ def loadClass():
 
 
 def getDB(classNum):
-    url = "https://canvas.skku.edu/courses/" + classNum + "/external_tools/1"
+    url = "https://canvas.skku.edu/courses/" + str(classNum) + "/external_tools/1"
     del driver.requests
     driver.get(url)
     classCode = driver.find_element_by_css_selector(
