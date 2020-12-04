@@ -1,4 +1,4 @@
-from seleniumwire import webdriver
+from selenium import webdriver
 # will change selniumwire to selenium when full optimization is complete
 # Dropping selenium-wire dependency (speed enhancement)
 # Now this project does not use proxy server for capturing https packets
@@ -202,8 +202,6 @@ loadUser(driver, user)
 
 # download each classes
 for cl in user.classes:
-    getDB(cl)
-    # getDB() will be deprecated after full optimization is finished
-    # getClassContents(driver, cl, user.classDatas[cl])
-
+    getClassContents(driver, cl, user.classDatas[cl])
+    
 parse_json.writeCompleted()
