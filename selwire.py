@@ -1,4 +1,7 @@
-from seleniumwire import webdriver  # Import from seleniumwire
+from seleniumwire import webdriver
+# will change selniumwire to selenium when full optimization is complete
+# Dropping selenium-wire dependency (speed enhancement)
+# Now this project does not use proxy server for capturing https packets
 import time
 import requests
 import json
@@ -127,20 +130,41 @@ def loadUser(driver, user):
     user.uid, user.classes, user.classDatas = getClassesAndUid(user)
     pass
 
-# After getClassesAndUid() is implemented, previous loadClass() function will be deprecated
-def loadClass():
-    driver.get("https://canvas.skku.edu/courses")
-    classList = driver.find_element_by_css_selector(
-        "#my_courses_table > tbody")
-    classTags = driver.find_elements_by_tag_name("a")
-    lists = []
-    for cl in classTags:
-        if (cl.get_attribute("title") and ("안전교육" not in cl.get_attribute("title"))):
-            lists.append(cl.get_attribute("href").split("/")[-1])
 
-    return lists
+# function for loading lecture data from canvas
+def getContentDB(user, classId):
+    """
+    load allcomponents_db
+
+    allcomponents_db can be acquired by GET /api/v1/courses/[course id]/allcomponents_db?user_id=[user canvas id]&user_login=[student_id]&role=1
+    requires bearer token as https header
+    """
+    pass
+    # return parsed json
 
 
+# function for loading week data from canvas
+def getWeekDB(user, classId):
+    """
+    load sections_db
+
+    sections_db can be acquired by GET /api/v1/courses/[course id]/sections_db?user_id=[user canvas id]&type=
+    requires bearer token as https header
+    """
+    pass
+    # return parsed json
+
+
+# function for start parsing DB
+def getClassContents(driver, classID, classdata):
+    # 기존에 있던 getDB 함수와 사실상 동일한 함수
+    # 기존에 사용하던 parseClass() method 를 변경하지 않고 사용하도록 작성하였다.
+    db = getContentDB(user, classID)
+    week_data = getWeekDB(user, classID)
+    res = parse_json.parseClass(db, week_data, classdata["code"], classdata["name"], classdata["prof"])
+
+
+# getDB function will be deprecated when optimization is complete
 def getDB(classNum):
     url = "https://canvas.skku.edu/courses/" + str(classNum) + "/external_tools/1"
     del driver.requests
@@ -171,5 +195,7 @@ loadUser(driver, user)
 # download each classes
 for cl in user.classes:
     getDB(cl)
+    # getDB() will be deprecated after full optimization is finished
+    # getClassContents(driver, cl, user.classDatas[cl])
 
 parse_json.writeCompleted()
