@@ -83,10 +83,9 @@ def parseWeekdata(week_data, parsed_dict):
 
 
 def parseClass(db, week_db, classCode, className, professor):
-    # site_data = db
-    # w_data = week_db
-    site_data = json.loads(db)  # 강의 정보
-    w_data = json.loads(week_db)
+    # fix for optimization since now function gets parsed json not str
+    site_data = db
+    w_data = week_db
 
     class_data = findClass(classCode, className, professor)  # 해당 분반 전체 json
     class_vids = class_data["classVids"]  # 해당 분반 저장된 강의 json
