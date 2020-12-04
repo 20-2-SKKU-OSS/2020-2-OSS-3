@@ -1,6 +1,7 @@
 from seleniumwire import webdriver
 # will change selniumwire to selenium when full optimization is complete
-
+# Dropping selenium-wire dependency (speed enhancement)
+# Now this project does not use proxy server for capturing https packets
 import time
 import requests
 import json
@@ -128,6 +129,12 @@ def loadUser(driver, user):
 
 # function for loading lecture data from canvas
 def getContentDB(user, classId):
+    """
+    load allcomponents_db
+
+    allcomponents_db can be acquired by GET /api/v1/courses/[course id]/allcomponents_db?user_id=[user canvas id]&user_login=[student_id]&role=1
+    requires bearer token as https header
+    """
     pass
     # return parsed json
 
