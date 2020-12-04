@@ -141,6 +141,12 @@ def getContentDB(user, classId):
 
 # function for loading week data from canvas
 def getWeekDB(user, classId):
+    """
+    load sections_db
+
+    sections_db can be acquired by GET /api/v1/courses/[course id]/sections_db?user_id=[user canvas id]&type=
+    requires bearer token as https header
+    """
     pass
     # return parsed json
 
