@@ -1,5 +1,6 @@
 from seleniumwire import webdriver
 # will change selniumwire to selenium when full optimization is complete
+
 import time
 import requests
 import json
@@ -124,28 +125,18 @@ def loadUser(driver, user):
     user.uid, user.classes, user.classDatas = getClassesAndUid(user)
     pass
 
-# After getClassesAndUid() is implemented, previous loadClass() function will be deprecated
-def loadClass():
-    driver.get("https://canvas.skku.edu/courses")
-    classList = driver.find_element_by_css_selector(
-        "#my_courses_table > tbody")
-    classTags = driver.find_elements_by_tag_name("a")
-    lists = []
-    for cl in classTags:
-        if (cl.get_attribute("title") and ("안전교육" not in cl.get_attribute("title"))):
-            lists.append(cl.get_attribute("href").split("/")[-1])
-
-    return lists
 
 # function for loading lecture data from canvas
 def getContentDB(user, classId):
     pass
     # return parsed json
 
+
 # function for loading week data from canvas
 def getWeekDB(user, classId):
     pass
     # return parsed json
+
 
 # function for start parsing DB
 def getClassContents(driver, classID, classdata):
@@ -154,6 +145,7 @@ def getClassContents(driver, classID, classdata):
     db = getContentDB(user, classID)
     week_data = getWeekDB(user, classID)
     res = parse_json.parseClass(db, week_data, classdata["code"], classdata["name"], classdata["prof"])
+
 
 # getDB function will be deprecated when optimization is complete
 def getDB(classNum):
