@@ -155,8 +155,12 @@ def getWeekDB(user, classId):
     sections_db can be acquired by GET /api/v1/courses/[course id]/sections_db?user_id=[user canvas id]&type=
     requires bearer token as https header
     """
-    pass
+    url = "https://canvas.skku.edu/learningx/api/v1/courses/%d/sections_db?user_id=%d&role=1&type=" % (
+        classId, user.uid)
+    # requires bearer token
+    res = requests.get(url, headers=user.headers)
     # return parsed json
+    return res.json()
 
 
 # function for start parsing DB
