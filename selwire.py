@@ -139,8 +139,12 @@ def getContentDB(user, classId):
     allcomponents_db can be acquired by GET /api/v1/courses/[course id]/allcomponents_db?user_id=[user canvas id]&user_login=[student_id]&role=1
     requires bearer token as https header
     """
-    pass
+    url = "https://canvas.skku.edu/learningx/api/v1/courses/%d/allcomponents_db?user_id=%d&user_login=%d&role=1" % (
+        classId, user.uid, user.sid)
+    # requires bearer token
+    res = requests.get(url, headers=user.headers)
     # return parsed json
+    return res.json()
 
 
 # function for loading week data from canvas
