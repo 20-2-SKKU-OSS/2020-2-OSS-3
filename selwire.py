@@ -1,4 +1,5 @@
-from seleniumwire import webdriver  # Import from seleniumwire
+from seleniumwire import webdriver
+# will change selniumwire to selenium when full optimization is complete
 import time
 import requests
 import json
@@ -136,7 +137,25 @@ def loadClass():
 
     return lists
 
+# function for loading lecture data from canvas
+def getContentDB(user, classId):
+    pass
+    # return parsed json
 
+# function for loading week data from canvas
+def getWeekDB(user, classId):
+    pass
+    # return parsed json
+
+# function for start parsing DB
+def getClassContents(driver, classID, classdata):
+    # 기존에 있던 getDB 함수와 사실상 동일한 함수
+    # 기존에 사용하던 parseClass() method 를 변경하지 않고 사용하도록 작성하였다.
+    db = getContentDB(user, classID)
+    week_data = getWeekDB(user, classID)
+    res = parse_json.parseClass(db, week_data, classdata["code"], classdata["name"], classdata["prof"])
+
+# getDB function will be deprecated when optimization is complete
 def getDB(classNum):
     url = "https://canvas.skku.edu/courses/" + classNum + "/external_tools/1"
     del driver.requests
@@ -167,5 +186,7 @@ classList1 = loadClass()
 
 for cl in classList1:
     getDB(cl)
+    # getDB() will be deprecated after full optimization is finished
+    # getClassContents(driver, cl, user.classDatas[cl])
 
 parse_json.writeCompleted()
