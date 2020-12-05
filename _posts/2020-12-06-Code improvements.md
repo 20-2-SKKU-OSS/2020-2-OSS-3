@@ -40,12 +40,16 @@ background: '/img/posts/02.jpg'
 -------------------------
 
 * 2.user의 token들을 추출. (getToken함수)
-  Selenium을 통한 웹 브라우저에서 사용자 인증 토큰 (쿠키) 추출 결과
+  
+  Selenium을 통한 웹 브라우저에서 사용자 인증 토큰 (쿠키) 추출 결과.
+  
   Canvas API 분석을 통해 다음 3가지 인증 토큰이 주로 사용되고 있음을 알 수 있었다.
     - xn_api_token : http 요청 헤더에서 Bearer 토큰으로 사용
     - uid : URL 매개 변수로 요청 된 캔버스의 사용자 ID
     - normandy_session : xn_api_token이로드 될 때까지 초기 인증 토큰을 위한 usef
- - (추가적인 설명)
+ 
+ (추가적인 설명)
+ 
  xn_api_token은 적어도 하나의 강의 페이지를 입력 할 때까지 완전히로드되지 않는다. 따라서 selenium에서 쿠키를 추출하기 전에 임의의 강의 페이지를 미리 방문해야한다. 이 절차는 강의를 load하기전에 수행되기 때문에, 강의 목록 페이지를 클릭하면 목록에 나타나는 첫 번째 클래스를 방문하도록 하였다. 강의를 Load 할 때 UID를 자동으로 추출 할 수 있으므로 UID는 getClassesAndUid ()에 의해 처리된다.
 
 
