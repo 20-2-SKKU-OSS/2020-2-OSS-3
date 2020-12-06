@@ -124,11 +124,13 @@ def getClassesAndUid(user):
 def loadUser(driver, user):
     # 1.login with selenium
     login(driver, user.id, user.pw)
+    time.sleep(1)
     # 2.extract auth token
     user.headers, user.cookies = getToken(driver)
+    time.sleep(1)
     # 3.load classes and canvas uid
     user.uid, user.classes, user.classDatas = getClassesAndUid(user)
-    pass
+    time.sleep(1)
 
 
 # function for loading lecture data from canvas
