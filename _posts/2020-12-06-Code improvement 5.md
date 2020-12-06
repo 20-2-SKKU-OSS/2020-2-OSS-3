@@ -7,21 +7,21 @@ background: '/img/posts/02.jpg'
 ---
 
 # Update UX
-
+ 
 
 
 
 ## Problems in the Previous Version
 ---------------
 기존의 프로그램은 현재 프로그램이 어떤 동작을 하고 있는지 파악 할 수 없어, user-friendly 한 UX가 아니였다.
+ 
 
 
 
-
-## update
+## Update
 ------------------------
 CLI 및 GUI를 추가하여 user-friendly 한 UX 제공
-
+ 
 
 
 
@@ -32,7 +32,7 @@ CLI 및 GUI를 추가하여 user-friendly 한 UX 제공
 3. 디버깅 출력 제거
 4. 다운로드 내용 표시
 5. 파일 다운로드 안내 & 코드 정리
-
+ 
 
 
 ## Detailed explanation
