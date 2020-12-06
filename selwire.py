@@ -172,25 +172,6 @@ def getClassContents(driver, classID, classdata):
     res = parse_json.parseClass(db, week_data, classdata["code"], classdata["name"], classdata["prof"])
 
 
-# getDB function will be deprecated when optimization is complete
-def getDB(classNum):
-    url = "https://canvas.skku.edu/courses/" + str(classNum) + "/external_tools/1"
-    del driver.requests
-    driver.get(url)
-    classCode = driver.find_element_by_css_selector(
-        "#breadcrumbs > ul > li:nth-child(2) > a > span").text
-    classC = classCode[classCode.find(
-        "_") + 1:classCode.find("(")].replace("_", "-")
-    classN = classCode[:classCode.find("_")]
-    classT = classCode[classCode.rfind("(") + 1:classCode.rfind(")")]
-    print("")
-    print(classC, classN, classT)
-    db = driver.wait_for_request("allcomponents_db?").response.body
-    week_data = driver.wait_for_request("sections_db?").response.body
-    parse_json.parseClass(db.decode("utf-8"),
-                          week_data.decode("utf-8"), classC, classN, classT)
-    # print(parsed_db)
-
 
 parse_json.loadCompleted()
 
