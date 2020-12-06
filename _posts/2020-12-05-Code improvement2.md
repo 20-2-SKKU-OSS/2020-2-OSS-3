@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Code improvement3"
+title: "Code improvement2"
 subtitle: "Speed is improved by more than 2 times"
-date: 2020-12-6 18:22:00 +0900
+date: 2020-12-5 18:22:00 +0900
 background: '/img/posts/02.jpg'
 ---
 
