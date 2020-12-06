@@ -100,6 +100,18 @@ def downloadWeek(classCode, className, professor, workload):
 
     for week in list(workload.keys()):
 
+        # only download desired week
+        try:
+            l = len(settings.week)
+            if (l == 1):
+                if (int(week) < settings.week[0]):
+                    continue
+            elif (l > 0):
+                if (int(week) not in settings.week):
+                    continue
+        except:
+            pass
+
         # print downloading week info
         print("")
         print(classCode+" "+className+" week"+week)
