@@ -56,11 +56,11 @@ python3에서 작동하며 현재 대부분의 기능이 작동되지만 매우 
 ```bash
 .
 ├── slide
-│   └── OSS_3조_발표_초안.pptx
+│   └── OSS_3조_발표.pdf
 ├── dataPy.py
 ├── parse_json.py
 ├── requestPy.py
-├── selwire.py
+├── main.py
 ├── settings.py
 ├── user.py
 ├── .gitignore
