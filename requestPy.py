@@ -26,7 +26,11 @@ def downloadLecture(urls):
     pass
 
 
-def downloader(link, file_name):
+def downloader(arguments):
+
+    link = arguments[0]
+    file_name = arguments[1]
+    
     if("/[MEDIA_FILE]") in link:
         print("Media-file Error")
         return
