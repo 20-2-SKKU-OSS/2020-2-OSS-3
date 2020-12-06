@@ -189,3 +189,5 @@ for cl in user.classes:
     getClassContents(driver, cl, user.classDatas[cl])
     
 parse_json.writeCompleted()
+
+print("download complete")
