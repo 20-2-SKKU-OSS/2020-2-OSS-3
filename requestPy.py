@@ -3,6 +3,7 @@ import os
 import shutil
 import sys
 import time
+from multiprocessing.pool import ThreadPool
 
 from threading import Event, Thread
 from tkinter import Tk, ttk
@@ -30,7 +31,7 @@ def downloader(arguments):
 
     link = arguments[0]
     file_name = arguments[1]
-    
+
     if("/[MEDIA_FILE]") in link:
         print("Media-file Error")
         return
@@ -167,6 +168,8 @@ def downloadWeek(classCode, className, professor, workload):
                     work_list.append([vid, week_dir + filename])
 
         # 멀티프로세싱 구현을 위함 (추후 수정 예정)
-        for param in work_list:
-            downloader(*param)
-
+        # implemented multi threading
+        p = ThreadPool(4)
+        p.map(downloader, work_list)
+        p.close()
+        p.join()
