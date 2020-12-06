@@ -171,8 +171,6 @@ def getClassContents(driver, classID, classdata):
     week_data = getWeekDB(user, classID)
     res = parse_json.parseClass(db, week_data, classdata["code"], classdata["name"], classdata["prof"])
 
-
-
 parse_json.loadCompleted()
 
 # Create a new instance of the chromedriver
@@ -180,6 +178,11 @@ driver = webdriver.Chrome()
 
 # Load User datas
 loadUser(driver, user)
+
+# show class info for better UX
+print("Found %d class" % (len(user.classes)))
+for cl in user.classes:
+    print(cl, user.classDatas[cl]["code"], user.classDatas[cl]["name"])
 
 # download each classes
 for cl in user.classes:
