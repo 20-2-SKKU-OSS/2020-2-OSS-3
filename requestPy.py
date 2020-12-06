@@ -152,7 +152,7 @@ def downloadWeek(classCode, className, professor, workload):
             if(len(content["vid_urls"]) == 1):
                 filename = fname + \
                     getFileType(content["vid_urls"][0])
-                print(filename)
+                #print(filename)
                  # downloader(content["vid_urls"][0], week_dir+filename)
                 work_list.append([content["vid_urls"][0], week_dir+filename])
 
@@ -164,14 +164,14 @@ def downloadWeek(classCode, className, professor, workload):
                         work_list.append([vid, week_dir+filename])
                     elif("screen" in vid):
                         filename = fname + "-screen" + getFileType(vid)
-                        print(filename)
+                        #print(filename)
                         # downloader(vid, week_dir+filename)
                         work_list.append([vid, week_dir + filename])
 
             else:
                 for vid in vids:
                     filename = fname + "-" + vid.split("/")[-1]
-                    print(filename)
+                    #print(filename)
                     # downloader(vid, week_dir+filename)
                     work_list.append([vid, week_dir + filename])
 
