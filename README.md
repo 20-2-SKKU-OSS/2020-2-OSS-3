@@ -36,18 +36,26 @@ python3에서 작동하며 현재 대부분의 기능이 작동되지만 매우 
 ####  2. [chromedriver](https://chromedriver.chromium.org/downloads) 설치
    - 위 링크를 통해 Chrome 버전, OS에 맞게 chromedriver 다운로드 및 설치
      - Chrome 버전 확인: 크롬 우측 상단의 메뉴 버튼 > 도움말 > Chrome 정보
-   - selwire.py와 같은 경로에 chromedriver.exe 추가
+   - main.py와 같은 경로에 chromedriver.exe 추가
    
-#### 3. selwire.py와 같은 경로에 crendentials.py 파일 생성
+#### 3. settings.py의 내용에 아래와 같이 사용자가 직접 코드 수정
+   - devFlag에 저장된 False를 True로 수정
+   - banlist에 다운받지 않을 강의의 번호를 배열에 추가
+   - week에 다운받을 주차의 범위 설정
+     - 예를 들어, week = [5]일 경우 5주차부터 지금까지 나온 강의를 모두 다운
+     - week = [5, 7]일 경우 5주차, 7주차만 다운
+     - week = []일 경우 모든 강의를 다운
+   - downloadDir에 프로그램 실행 폴더 내의 다운로드 폴더의 경로를 입력 후, 경로에 있는 모든 \에 \를 하나씩 더 추가
    
-#### 4. selwire.py의 내용에 아래와 같이 세 개의 배열 추가 및 저장
+#### 4. settings.py의 내용에 아래와 같이 사용자 정보 추가 및 저장
     
     sid = [<사용자 학번>]
     id = [<사용자 아이디>]
     pw = [<사용자 비밀번호>]
     
-#### 5. selwire.py 실행
-    python selwire.py
+#### 5. main.py 실행
+
+#### 6. 프로그램 실행 폴더 내의 complete 파일은 이미 다운 받은 강의를 다시 다운 받지 않게 방지하는 용도의 파일로, 지우지 않도록 한다.
 
 ---
 
