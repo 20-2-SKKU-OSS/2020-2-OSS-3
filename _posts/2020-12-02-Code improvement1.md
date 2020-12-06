@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Code improvement2"
+title: "Code improvement1"
 subtitle: "Works just by login without any additional settings"
-date: 2020-12-6 18:22:00 +0900
+date: 2020-12-2 17:32:00 +0900
 background: '/img/posts/02.jpg'
 ---
 
