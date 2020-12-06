@@ -130,6 +130,12 @@ def downloadWeek(classCode, className, professor, workload):
     createDir(class_dir)
 
     for week in list(workload.keys()):
+        
+        # print downloading week info
+        print("")
+        print(classCode+" "+className+" week"+week)
+        print("-"*100)
+
         week_dict = workload[week]
         week_dir = class_dir + "\\" + classCode+" "+week+"주차\\"
         rcDir(week_dir)
