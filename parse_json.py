@@ -157,7 +157,7 @@ def getVidUrl(xml):
                     if(vid.text):
                         bs = bs+vid.text
                         if(bs not in vidlinks):
-                            print(bs)
+                            #print(bs)
                             vidlinks.append(bs)
             else:
                 vidlinks.append(url.text)
