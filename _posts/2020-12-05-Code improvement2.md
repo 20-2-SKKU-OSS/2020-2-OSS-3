@@ -7,19 +7,19 @@ background: '/img/posts/02.jpg'
 ---
 
 # Improved speed & Reduced dependence
-
+ 
 
 
 ## Problems in the Previous Version
 ---------------
 기존에는 selenium과 proxy를 사용하여 traffic capture를 사용하여 작동하기 떄문에 속도가 저하됨.
+ 
 
 
-
-## update
+## Update
 ------------------------
 따라서 Session sharing을 통한 direct request를 통해 browser automation에 대한 의존도를 감소시키고 작동 속도 개선.
-
+ 
 
 
 ## Detailed explanation
