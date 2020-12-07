@@ -39,7 +39,6 @@ python3에서 작동하며 현재 대부분의 기능이 작동되지만 매우 
    - main.py와 같은 경로에 chromedriver.exe 추가
    
 #### 3. settings.py의 내용에 아래와 같이 사용자가 직접 코드 수정
-   - devFlag에 저장된 False를 True로 수정
    - banlist에 다운받지 않을 강의의 번호를 배열에 추가
    - week에 다운받을 주차의 범위 설정
      - 예를 들어, week = [5]일 경우 5주차부터 지금까지 나온 강의를 모두 다운
