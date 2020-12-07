@@ -30,9 +30,10 @@ background: '/img/posts/02.jpg'
 -------------------------
 1. Disable devFlag and create week for user options
 2. Added download week option
-  
-  
 
 
-## Detailed explanation
+## Example
 -------------------------
+<img class="img-fluid" src="/2020-2-OSS-3/img/posts/setting_img.png"/>
+  
+
