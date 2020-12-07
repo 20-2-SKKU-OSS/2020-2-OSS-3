@@ -20,18 +20,13 @@ background: '/img/posts/02.jpg'
 
 ## update
 ------------------------
-Multiprocessing을 도입하여 다운로드 속도 개선.
- 
-
-
-
-## Ways to improve
--------------------------
- 
-
-
+Multiprocessing을 도입하여 다운로드 속도 개선. (아이캠퍼스의 서버 상태에 따라 최대 4배의 속도 개선)
+따라 최대 4개의 강의를 동시에 다운받을 수 있다.
+  
+  
 
 
 ## Detailed explanation
 -------------------------
- 
+<img class="img-fluid" src="/2020-2-OSS-3/img/posts/Multi_code1.png"/>
+<img class="img-fluid" src="/2020-2-OSS-3/img/posts/Multi_code2.png"/>
