@@ -1,4 +1,4 @@
-# WIP: skku_icampus_auto_downloader
+# skku_icampus_auto_downloader
 
 성균관대 (신)icampus 자동 다운(동기화) 프로그램
 
