@@ -38,3 +38,12 @@ CLI 및 GUI를 추가하여 user-friendly 한 UX 제공
 ## Detailed explanation
 -------------------------
 수강과목을 정렬 하고, 강의 영상을 다운로드 받으면서 어떤 강의를 받고 있는지 내용을 표시한다. 
+
+
+  
+## EXample
+* 인식한 수강 내역 출력
+<img class="img-fluid" src="/2020-2-OSS-3/img/posts/ux_example1.png"/>
+  
+* 다운로드 안내
+<img class="img-fluid" src="/2020-2-OSS-3/img/posts/ux_example2.png"/>
