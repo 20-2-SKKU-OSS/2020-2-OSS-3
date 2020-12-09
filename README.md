@@ -4,7 +4,7 @@
 
 
 
-- [WIP: skku_icampus_auto_downloader](#wip-skku_icampus_auto_downloader)
+- [skku_icampus_auto_downloader](#wip-skku_icampus_auto_downloader)
   - [개발 배경](#개발-배경)
     - [개발 취지](#개발-취지)
     - [개발 방향](#개발-방향)
@@ -15,7 +15,6 @@
   - [저작권 관련 사항](#저작권-관련-안내-사항)
 
 팀 프로젝트 정적페이지 링크 : https://20-2-skku-oss.github.io/2020-2-OSS-3
-
 가져온 프로젝트 깃 repository 주소 : https://github.com/trayo9852/skku_icampus_auto_downloader
 
 ---
